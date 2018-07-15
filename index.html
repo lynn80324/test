@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <style>
+        div{
+             text-align:center;
+        }
+        </style>
+
+    </head>
+    <body>
+    <div>
+        <h3>誰先贏十次誰就贏</h3>
+        <p id="ourWincount"></p>
+        <p id="computerWincount"></p>
+        <button onclick="game('scissors')"><img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfNX_degVLa1jF1RbUozFplK93hN12J7g58l-C83Baz03ZfqMl"></button>
+        <button onclick="game('stone')"><img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSupdgMp_nLXBB-0csD9UGfzf5QWLcZ2JDkihU7mj_-HGHe7K6A"></button>
+        <button onclick="game('paper')"><img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeABOWCnUjcdJaCIwP_oyu3eNS5WYFyNtYxg2Gt3k33yIj8s2Z"></button>
+        
+        <div id="ourHit"></div>
+        <div id="computerHit"></div>  
+        <p id="resultworld"></p>  
+    </div>
+
+       
+        <script>
+            let ourWincount=0
+            let computerWincount=0
+            function game(hit){
+               if(hit=='scissors'){
+                   document.getElementById('ourHit').innerHTML='<img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfNX_degVLa1jF1RbUozFplK93hN12J7g58l-C83Baz03ZfqMl">'
+               }
+               else if(hit=='stone'){
+                   document.getElementById('ourHit').innerHTML='<img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSupdgMp_nLXBB-0csD9UGfzf5QWLcZ2JDkihU7mj_-HGHe7K6A">'
+               }
+               else{
+                document.getElementById('ourHit').innerHTML='<img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeABOWCnUjcdJaCIwP_oyu3eNS5WYFyNtYxg2Gt3k33yIj8s2Z">'
+               }
+                   
+               
+        
+               let randomnumber=Math.random()
+               let computerHit=''
+               let result=''
+
+               if(randomnumber<1/3){
+                   computerHit='scissors'
+                   document.getElementById('computerHit').innerHTML='V.S.<br><img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfNX_degVLa1jF1RbUozFplK93hN12J7g58l-C83Baz03ZfqMl">'
+                   if(hit=='scissors'){
+                       result='平手'
+                   }
+                   else if(hit=='stone'){
+                       result='你贏了'
+                       ourWincount=ourWincount+1
+                   }
+                   else{
+                       result='你輸了'
+                       computerWincount=computerWincount+1
+                   }
+               }
+               else if(randomnumber<2/3){
+                   computerHit='stone'
+                   document.getElementById('computerHit').innerHTML='V.S.<br><img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSupdgMp_nLXBB-0csD9UGfzf5QWLcZ2JDkihU7mj_-HGHe7K6A">'
+                   if(hit=='scissors'){
+                       result='你輸了'
+                       computerWincount=computerWincount+1
+                   }
+                   else if(hit=='stone'){
+                       result='平手'
+                   }
+                   else{
+                       result='你贏了'
+                       ourWincount=ourWincount+1
+                   }
+               }
+               else{
+                   computerHit='paper'
+                   document.getElementById('computerHit').innerHTML='V.S.<br><img style="width:150px;height:110px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeABOWCnUjcdJaCIwP_oyu3eNS5WYFyNtYxg2Gt3k33yIj8s2Z">'
+                   if(hit=='scissors'){
+                       result='你贏了'
+                       ourWincount=ourWincount+1
+                   }
+                   else if(hit=='stone'){
+                       result='你輸了'
+                       computerWincount=computerWincount+1
+                   }
+                   else{
+                       result='平手'
+                   }
+               }
+               document.getElementById('resultworld').innerHTML="電腦出的是"+computerHit+"你出的是"+hit+"結果是:"+result+"。"
+               document.getElementById('ourWincount').innerHTML="你贏的次數"+ourWincount
+               document.getElementById('computerWincount').innerHTML="電腦贏的次數"+computerWincount
+               if(ourWincount>=10){
+                   setTimeout(function(){
+                    alert('你贏了!')
+                   ourWincount=0
+                   computerWincount=0
+                   },400)
+
+               }
+               if(computerWincount>=10){
+                   setTimeout(function(){
+                    alert('電腦贏了')
+                   ourWincount=0
+                   computerWincount=0
+                   },400)
+
+               }
+            }
+
+        </script>
+        
+    </body>
+</html>
